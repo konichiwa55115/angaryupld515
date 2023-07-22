@@ -18,7 +18,7 @@ def command1(bot,message):
     zaza = 76
     while (zaza <= 129): 
      cmd(f'mkdir downloads')
-     cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/Zm/88/1/NQ-ZM-0{zaza}.mp3 && cd ..' )
+     cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/Zm/89/1/NQ-ZM-0{zaza}.mp3 && cd ..' )
      zaza += 1
     cmd('uploadgram -1001821573758 ./downloads/ ')
     shutil.rmtree('./downloads/') 
