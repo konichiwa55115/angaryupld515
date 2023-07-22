@@ -21,90 +21,16 @@ bot = Client(
     api_hash="ee28199396e0925f1f44d945ac174f64",
     bot_token="6030811502:AAF0tj9q_2BH1HpmRZLkuvBQttmxYdYFw6o"
 )
-@bot.on_message(filters.command('start') & filters.private)
+@bot.on_message(filters.command('dl') & filters.private)
 def command1(bot,message):
-    bot.send_message(message.chat.id, " االسلام عليكم أنا بوت التحميل من يوتيوب  ",disable_web_page_preview=True)
+    bot.send_message(message.chat.id, " جار التحميل  ",disable_web_page_preview=True)
+    zaza = 12
+    while (zaza <= 50): 
+     cmd(f'mkdir downloads')
+     cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/167/a{zaza}.mp3 && cd ..' )
+     cmd('uploadgram -1001821573758 ./downloads/ ')
+     shutil.rmtree('./downloads/') 
+     zaza += 1
 
-@bot.on_message(filters.private & filters.incoming & filters.text  )
-def _telegram_file(client, message):
-
-  global user_id
-  user_id = message.from_user.id 
-  global url
-  url = message.text  
-  cmd(f'mkdir downloads')
-  message.reply(
-             text = CHOOSE_UR_LANG,
-             reply_markup = InlineKeyboardMarkup(CHOOSE_UR_LANG_BUTTONS)
-
-        )
-
-@bot.on_callback_query()
-def callback_query(CLIENT,CallbackQuery):
-  CallbackQuery.edit_message_text(
-      
-      "جار التنزيل "
-  )
-  cmd(f'yt-dlp --flat-playlist -i --print-to-file url file.txt {url}')
-  
-  global numbofvid
-  cmd(f'wc -l < file.txt > res.txt')
-  with open('res.txt', 'r') as file:
-        temp = file.read().rstrip('\n') 
-  numbofvid = int(temp)
-  cmd('unlink res.txt')
-  if CallbackQuery.data == "vid 360p":
-      zaza = 1 
-      while (zaza <= numbofvid): 
-       cmd(f'sed -n {zaza}p file.txt > res.txt')
-       with open('res.txt', 'r') as file:
-        link = file.read().rstrip('\n')   
-       with YoutubeDL() as ydl: 
-        info_dict = ydl.extract_info(f'{link}', download=False)
-        video_url = info_dict.get("url", None)
-        video_id = info_dict.get("id", None)
-        video_title = info_dict.get('title', None)  
-       cmd(f'yt-dlp -f 18 --abort-on-error -o downloads/"%(title)s.%(ext)s" {link}')
-       cmd('uploadgram -1001821573758 ./downloads/ ')
-       cmd("rclone copy ./downloads/ 'karim':'mhmdshmd511551x' --progress ")
-       shutil.rmtree('./downloads/')
-
-       cmd(f"rm res.txt")
-       zaza += 1           
-
-  elif CallbackQuery.data == "vid 720p":
-      zaza = 1 
-      while (zaza <= numbofvid): 
-       cmd(f'sed -n {zaza}p file.txt > res.txt')
-       with open('res.txt', 'r') as file:
-        link = file.read().rstrip('\n')
-       with YoutubeDL() as ydl: 
-        info_dict = ydl.extract_info(f'{link}', download=False)
-        video_url = info_dict.get("url", None)
-        video_id = info_dict.get("id", None)
-        video_title = info_dict.get('title', None) 
-       cmd(f'yt-dlp -f 22 -o mhmd.mp4 {link}')
-       with open('mhmd.mp4', 'rb') as f:
-        bot.send_video(user_id, f,caption=video_title)
-       cmd('rm res.txt mhmd.mp4')
-       zaza += 1           
-      
-  elif CallbackQuery.data == "aud":
-      zaza = 1 
-      while (zaza <= numbofvid): 
-       cmd(f'sed -n {zaza}p file.txt > res.txt')
-       with open('res.txt', 'r') as file:
-        link = file.read().rstrip('\n')   
-       cmd(f'yt-dlp --extract-audio --audio-format mp3  -o downloads/"%(title)s.%(ext)s" {link}')
-       cmd('uploadgram -1001821573758 ./downloads/ ')
-       cmd("rclone copy ./downloads/ 'karim':'angary51515151sx' --progress ")
-       shutil.rmtree('./downloads/')
-       cmd('rm res.txt' )
-       zaza += 1           
-  CallbackQuery.edit_message_text(
-      
-      "تم التنزيل ✅"
-   )   
-  cmd(f'unlink file.txt')
 
 bot.run()
