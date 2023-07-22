@@ -15,10 +15,10 @@ bot = Client(
 @bot.on_message(filters.command('dl') & filters.private)
 def command1(bot,message):
     bot.send_message(message.chat.id, " جار التحميل  ",disable_web_page_preview=True)
-    zaza = 76
+    zaza = 100
     while (zaza <= 129): 
      cmd(f'mkdir downloads')
-     cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/Zm/89/1/NQ-ZM-0{zaza}.mp3 && cd ..' )
+     cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/Zm/89/1/NQ-ZM-{zaza}.mp3 && cd ..' )
      zaza += 1
     cmd('uploadgram -1001821573758 ./downloads/ ')
     shutil.rmtree('./downloads/') 
