@@ -15,8 +15,8 @@ bot = Client(
 @bot.on_message(filters.command('dl') & filters.private)
 def command1(bot,message):
     bot.send_message(message.chat.id, " جار التحميل  ",disable_web_page_preview=True)
-    zaza = 18
-    while (zaza <= 75): 
+    zaza = 76
+    while (zaza <= 129): 
      cmd(f'mkdir downloads')
      cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/Zm/88/1/NQ-ZM-0{zaza}.mp3 && cd ..' )
      zaza += 1
