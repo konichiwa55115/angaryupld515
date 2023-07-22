@@ -24,10 +24,10 @@ bot = Client(
 @bot.on_message(filters.command('dl') & filters.private)
 def command1(bot,message):
     bot.send_message(message.chat.id, " جار التحميل  ",disable_web_page_preview=True)
-    zaza = 1
-    while (zaza <= 54): 
+    zaza = 12
+    while (zaza <= 49): 
      cmd(f'mkdir downloads')
-     cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/182/a{zaza}.mp3 && cd ..' )
+     cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/2-2/94/alebanh{zaza}.mp3 && cd ..' )
      zaza += 1
     cmd('uploadgram -1001821573758 ./downloads/ ')
     shutil.rmtree('./downloads/') 
