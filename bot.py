@@ -28,9 +28,9 @@ def command1(bot,message):
     while (zaza <= 50): 
      cmd(f'mkdir downloads')
      cmd(f'cd ./downloads/ && wget https://al-angarie.com/audio/167/a{zaza}.mp3 && cd ..' )
-     cmd('uploadgram -1001821573758 ./downloads/ ')
-     shutil.rmtree('./downloads/') 
      zaza += 1
+    cmd('uploadgram -1001821573758 ./downloads/ ')
+    shutil.rmtree('./downloads/') 
 
 
 bot.run()
